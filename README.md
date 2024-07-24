@@ -14,6 +14,16 @@ This document proposes a comprehensive, multi-layered strategy to protect websit
 
 ## Proposed Multi-Level Approach
 
+### Layers
+
+Crawling directives alone typically rely on the voluntary compliance of web crawlers, which is not always guaranteed. Therefore, it is essential to implement additional methods to safeguard intellectual property effectively.
+
+1. Crawling and Indexation Directives
+2. Licensing and Legal Information
+3. Copyright Protection and Monitoring
+4. User-Friendly Implementation and Accessibility
+
+
 ### 1. Enhanced Robots.txt Directives
 
 **Standard Implementation:**
