@@ -1,4 +1,4 @@
-# AI-CONTROL
+# AI-CONTROL - CURRENT STATUS: WIP
 # Multi-Level Approach to Managing AI Crawler Behaviour and Content Protection
 
 ## Executive Summary
