@@ -1,6 +1,6 @@
 # PROPOSAL: Multi-Level Approach to Managing AI Crawler Behaviour and Content Protection
 
-## Executive Summary
+## Summary
 
 This document proposes a comprehensive, multi-layered strategy to protect website content from unauthorized use in AI training, particularly by Large Language Models (LLMs). The approach leverages existing web standards and proposals, and introduces new methods to communicate content usage restrictions effectively. We are not reinventing the wheel - but suggesting to combine methods for better protection.
 
@@ -15,14 +15,15 @@ This document proposes a comprehensive, multi-layered strategy to protect websit
 
 ### Layers
 
-Crawling directives alone typically rely on the voluntary compliance of web crawlers, which is not always guaranteed. Therefore, it is essential to implement additional methods to safeguard intellectual property effectively.
+Crawling directives alone typically rely on the voluntary compliance of web crawlers, which is not always guaranteed. Therefore, it is essential to implement a mix of methods to safeguard intellectual property effectively. 
+The suggested methods in this approach correspond to the following layers:
 
 1. Crawling and Indexation Directives
 2. Licensing and Legal Information
 3. Copyright Protection and Monitoring
-4. User-Friendly Implementation and Accessibility
-5. Access Request Management
+4. Access Request Management
 
+## Detailed Methods To Manage Access by LLMs
 
 ### 1. Enhanced Robots.txt Directives
 
