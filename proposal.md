@@ -1,4 +1,4 @@
-# PROPOSAL: Multi-Level Approach to Managing AI Crawler Behaviour and Content Protection
+# PROPOSAL: Multi-Level Approach to Managing AI Crawler Behavior and Content Protection
 
 ## Summary
 
