@@ -27,10 +27,14 @@ Crawling directives alone typically rely on the voluntary compliance of web craw
 ### 1. Enhanced Robots.txt Directives
 
 **Standard Implementation:**
+The standard robots.txt file allows website administrators to specify which parts of their site should be allowed or disallowed for crawling. This requires knowledge of the exact user agents used by generative AI bots to scrape websites.
+
 ```plaintext
+# Crawling directives for all user agents unless specified separately in this file
 User-agent: *
 Disallow: /private/
 
+# Disallowing access for specific user agents associated with generative AI
 User-agent: GPTBot
 Disallow: /
 
@@ -42,16 +46,29 @@ Sitemap: https://www.example.com/sitemap.xml
 License-Info: https://www.example.com/license-info.json
 ```
 
-**User Agent-Specific Implementation:**
-Serve different robots.txt files based on user agents, potentially excluding all AI crawlers.
+Maintaining the robots.txt file is straightforward and quick; however, it comes with certain disadvantages:
+1. Exposure of Sensitive Information: The file is publicly accessible and readable by humans, which could inadvertently reveal paths containing sensitive information. This might encourage malicious activities such as DDoS attacks or other cybersecurity threats targeting those paths.
+2. Non-Compliance by Bots: Not all bots obey robots.txt directives. There have been instances where bots, such as Perplexity AI, have crawled websites regardless of the directives. Therefore, it is strongly recommended to implement additional layers of protection.
 
-**References:**
-- nixCraft: How to block AI Crawler Bots using robots.txt file[4]
-- Raptive Support: How to manually block common AI crawlers[4]
+
+**User Agent-Specific Implementation:**
+Dynamic serving of different robots.txt files based on user agents, potentially excluding all AI crawlers requires server-side handling but adds an additional layer. For instance, Reddit recently implemented a strategy to block all search engines except Google by serving a different robots.txt files for Googlebot. Other user agents - including all other search engines - see their classic robots.txt file, disallowing all access and referencing their public content policy to inform about how they allow or disallow content to be accessed and used (Ryan Siddle, Merj Blog on Reddit's robots.txt Cloaking Strategy [1]).
+
+Dynamic user-agent-based serving of robots.txt files requires server-side handling, which adds complexity. If a domain does not want to expose their strategy of which user agents they wish to block, there are some advantages. 
+
+**Example robots.txt cloaking strategy:**
+1. Identify user agents or IP ranges of bots associated with generative AI. 
+2. Serve these bots a robots.txt with strict exclusion rules, protecting content you do not wish to be scraped.
+3. For all other user agents or IP addresses, serve a "vanilla" version of your robots.txt, listing all rules for benevolent bots like search engines.
+
+To cloak a robots.txt file for specific user agents, website administrators using Cloudflare can leverage Cloudflare Workers. If dynamic serving relies on user agents, validate user-agent strings to prevent spoofing.
 
 ### 2. Licensing Information in Robots.txt
 
-Reference a JSON-LD or XML file containing detailed licensing information:
+Combining licensing information with other directives in robots.txt adds an additional layer of protection and complements other methods like HTTP headers and meta tags, creating a multi-faceted approach to safeguarding a website's content.
+
+Instead of going with Reddit's approach of adding licensing information to human-readable pages, we suggest adding this information to an machine-readable format like JSON-LD or XML. This file can then be referenced in robots.txt, providing a clear and accessible way to communicate the terms under which a website's content can be used.
+We suggest establishing a standard for licensing JSON-LD or XML files.
 
 **Example JSON-LD Licensing Information:**
 ```json
@@ -70,6 +87,11 @@ Reference a JSON-LD or XML file containing detailed licensing information:
   }
 }
 ```
+
+Advantages:
+1. Legal Clarity: While robots.txt directives are not legally binding, adding licensing information can serve as a clear notice of a website's content usage rights and strengthen website owners' position in case of disputes over unauthorized use of their content.
+2. Ease of Implementation: Updating robots.txt to include a link to a licensing information file is straightforward and does not require significant technical changes.
+
 
 ### 3. HTTP Headers
 
@@ -169,7 +191,8 @@ Encourage institutions to establish clear processes for handling DMCA notices re
 This multi-level approach provides a comprehensive strategy for protecting content from unauthorized use in AI training. By leveraging existing web standards and introducing new methods, content creators can effectively communicate their usage restrictions and maintain control over their intellectual property in the age of AI.
 
 Sources
-[1] https://datatracker.ietf.org/group/aicontrolws/about/
+[1] https://merj.com/blog/investigating-reddits-robots-txt-cloaking-strategy
+
 [3] https://foundation.mozilla.org/en/blog/ai-training-can-undermine-the-open-web-this-team-is-thinking-through-solutions/
 [4] https://de.wikipedia.org/wiki/Robots_Exclusion_Standard
 [5] https://commonpaper.com/standards/cloud-service-agreement/train-ai/
