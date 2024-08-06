@@ -1,4 +1,4 @@
-# PROPOSAL: Multi-Level Approach to Managing AI Crawler Behavior and Content Protection
+# PROPOSAL: SOP for a Multi-Level Approach to Managing AI Crawler Behavior and Content Protection
 
 ## Summary
 
@@ -11,7 +11,7 @@ This document proposes a comprehensive, multi-layered strategy to protect websit
 3. Utilize existing directives where possible and introduce new ones where necessary.
 4. Encourage widespread adoption through major platforms and content management systems.
 
-## Proposed Multi-Level Approach
+## Proposed SOP for a Multi-Level Approach
 
 ### Layers
 
